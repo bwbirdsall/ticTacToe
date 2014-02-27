@@ -113,8 +113,23 @@ describe('Game', function() {
   describe('whoStarts', function() {
     it('returns a random game starting faction', function() {
       var newGame = Game.create();
-      newGame.whoseTurn.should.equal("X");
-      newGame.whoseTurn.should.equal("Y");
+      newGame.whoseTurn.should.match(/[XY]/);
+    });
+  });
+  describe('makeMove', function() {
+    it('returns true if the move was successful', function() {
+      var newGame = Game.create();
+      newGame.makeMove(newGame.playerX.faction, 1, 2).should.equal(true);
+    });
+    it('returns false if the move cannot be completed', function() {
+      var newGame = Game.create();
+      Space.find(1,2).markedBy('Y');
+      newGame.makeMove(newGame.playerX.faction, 1, 2).should.equal(false);
+    });
+    it('updates space value with correct faction', function() {
+      var newGame = Game.create();
+      newGame.makeMove(newGame.playerX.faction, 1, 2);
+      Space.find(1,2).value.should.equal("X");
     });
   });
 });

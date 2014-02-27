@@ -104,6 +104,15 @@ var Game = {
       return false;
     }
   },
+  makeMove: function(playerFaction, x, y) {
+    var moveSpace = Space.find(x,y);
+    if(moveSpace.value === "") {
+      moveSpace.value = playerFaction;
+      return true;
+    } else {
+      return false;
+    }
+  },
   switchTurn: function() {
     if(this.whoseTurn === this.playerX.faction) {
       this.whoseTurn = this.playerY.faction;
