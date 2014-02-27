@@ -1,0 +1,48 @@
+.bordered{
+  display: table;
+}
+
+.bordered div{
+  display: table-cell;
+  width: 200px;
+  height: 200px;
+  line-height: 180px;
+  text-align: center;
+}
+
+.bordered .highlight {
+  border: 10px solid olivedrab;
+  background: transparent;
+}
+
+.bordered .highlight2 {
+  border: 10px solid thistle;
+  background: transparent;
+}
+
+#game-play {
+  display: none;
+}
+
+#game-reset {
+  display: none;
+}
+
+/* colors! */
+
+.bordered div, .outlined div {
+  background: #CCC;
+}
+
+.square {
+  display: inline-block;
+  vertical-align: middle;
+  line-height: normal;
+}
+
+h3 {
+  color: darkorchid;
+  font-style: italic;
+  text-align: center;
+}
+

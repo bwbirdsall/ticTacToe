@@ -1,9 +1,94 @@
 <!DOCTYPE html>
 <html>
   <head>
-
+    <link href="css/bootstrap.css" rel="stylesheet" type="text/css">
+    <link href="css/styles.css" rel="stylesheet" type="text/css">
+    <script src="js/jquery-1.11.0.js"></script>
+    <script src="js/scripts.js"></script>
+    <title>Tic-Tac-Toe</title>
   </head>
   <body>
-    
+
+
+    <div class="container">
+      <div class="row">
+        <div class="col-md-4">
+          <div id="faction-entry">
+            <br/>
+            <h3>What factions are warring over this lovely territory?</h3>
+            <form id="start-game">
+              <div class="form-group">
+                <label for="faction-X-name">Enter Faction Name:</label>
+                <input type="text" class="form-control" id="new-faction-X-name" placeholder="Choose the first faction...">
+              </div>
+              <div class="form-group">
+                <label for="faction-Y-name">Enter Faction Name:</label>
+                <input type="text" class="form-control" id="new-faction-Y-name" placeholder="Choose the second faction...">
+              </div>
+              <button type="submit" class="btn btn-info">Create Factions</button>
+            </form>
+          </div>
+          <div id="game-play">
+            <br/>
+            <h3>It is <span id="whose-turn"></span>'s turn!</h3>
+            <form id="make-your-move">
+              <div id="team-names"></div>
+              <div id="faction-move-header"></div>
+              <div class="form-group">
+                <label for="move-x-coordinate">Enter X-Coordinate:</label>
+                <select class="form-control" id="new-x-move">
+                  <option>1</option>
+                  <option>2</option>
+                  <option>3</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="move-y-coordinate">Enter Y-Coordinate:</label>
+                <select class="form-control" id="new-y-move">
+                  <option>1</option>
+                  <option>2</option>
+                  <option>3</option>
+                </select>
+              </div>
+              <button type="submit" class="btn btn-info">Make Move</button>
+            </form>
+          </div>
+          <div id="game-reset">
+            <h3>Congratulations/Condolences!</h3>
+            <form id="reset-the-game">
+              <div class="form-group">
+                <button type="submit" class="btn btn-info">Reset the Game</button>
+              </div>
+            </form>
+          </div>
+        </div>
+        <div class="col-md-8">
+          <br/>
+          <div class="bordered">
+            <div class="highlight">
+              <span class="square" id="11"></span>
+            </div>
+            <div class="highlight2">
+              <span class="square" id="21"></span>
+            </div>
+            <div class="highlight">
+              <span class="square" id="31"></span>
+            </div>
+          </div>
+
+          <div class="bordered">
+            <div class="highlight2" id="12"></div>
+            <div class="highlight" id="22"></div>
+            <div class="highlight2" id="32"></div>
+          </div>
+
+          <div class="bordered">
+            <div class="highlight" id="13"></div>
+            <div class="highlight2" id="23"></div>
+            <div class="highlight" id="33"></div>
+          </div>
+        </div>
+      </div>
+    </div>
   </body>
 </html>

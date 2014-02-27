@@ -71,18 +71,18 @@ describe('Board', function(){
 describe('Game', function() {
   describe('create', function() {
     it('creates a game containing a proper board', function() {
-      var newGame = Game.create();
+      var newGame = Game.create('X','Y');
       newGame.board.boardSpaces.length.should.equal(9);
     });
     it('creates two warring factions', function() {
-      var newGame = Game.create();
+      var newGame = Game.create('X','Y');
       newGame.playerX.faction.should.equal('X');
       newGame.playerY.faction.should.equal('Y');
     });
   });
   describe('switchTurn', function() {
     it("switches which player's turn it is", function() {
-      var newGame = Game.create();
+      var newGame = Game.create('X','Y');
       newGame.whoseTurn = 'X';
       newGame.switchTurn();
       newGame.whoseTurn.should.equal('Y');
@@ -90,14 +90,14 @@ describe('Game', function() {
   });
   describe('gameOver', function() {
     it('halts the game once a winner is determined', function() {
-      var newGame = Game.create();
+      var newGame = Game.create('X','Y');
       Space.find(1,2).markedBy('X');
       Space.find(1,1).markedBy('X');
       Space.find(1,3).markedBy('X');
       newGame.gameOver().should.equal('X');
     });
     it('halts the game if there are no more moves left', function() {
-      var newGame = Game.create();
+      var newGame = Game.create('X','Y');
       Space.find(1,2).markedBy('A');
       Space.find(1,1).markedBy('B');
       Space.find(1,3).markedBy('C');
@@ -109,25 +109,29 @@ describe('Game', function() {
       Space.find(3,3).markedBy('I');
       newGame.gameOver().should.equal('NOBODY WINS');
     });
+    it('returns false for an unfinished game', function() {
+      var newGame = Game.create('X','Y');
+      newGame.gameOver().should.equal(false);
+    });
   });
   describe('whoStarts', function() {
     it('returns a random game starting faction', function() {
-      var newGame = Game.create();
+      var newGame = Game.create('X','Y');
       newGame.whoseTurn.should.match(/[XY]/);
     });
   });
   describe('makeMove', function() {
     it('returns true if the move was successful', function() {
-      var newGame = Game.create();
+      var newGame = Game.create('X','Y');
       newGame.makeMove(newGame.playerX.faction, 1, 2).should.equal(true);
     });
     it('returns false if the move cannot be completed', function() {
-      var newGame = Game.create();
+      var newGame = Game.create('X','Y');
       Space.find(1,2).markedBy('Y');
       newGame.makeMove(newGame.playerX.faction, 1, 2).should.equal(false);
     });
     it('updates space value with correct faction', function() {
-      var newGame = Game.create();
+      var newGame = Game.create('X','Y');
       newGame.makeMove(newGame.playerX.faction, 1, 2);
       Space.find(1,2).value.should.equal("X");
     });
