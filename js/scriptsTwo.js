@@ -77,7 +77,7 @@ var Board = {
     }
     if(Space.find(1,1).value === Space.find(2,2).value && Space.find(1,1).value === Space.find(3,3).value && Space.find(1,1).value !== "") {
       winner = Space.find(1,1).value;
-    } else if(Space.find(1,3).value === Space.find(2,2).value && Space.find(1,3).value === Space.find(3,1).value && Space.find(1,3).value !== "") {
+    } else if(Space.find(1,3).value === Space.find(2,2).value && Space.find(1,3).value === Space.find(3,1).value && Space.find(1,1).value !== "") {
       winner = Space.find(1,3).value;
     }
     return winner;
@@ -134,6 +134,16 @@ $(document).ready(function () {
   $("form#start-game").submit(function(event) {
     event.preventDefault();
 
+    $("#11").text("1,1");
+    $("#12").text("1,2");
+    $("#13").text("1,3");
+    $("#21").text("2,1");
+    $("#22").text("2,2");
+    $("#23").text("2,3");
+    $("#31").text("3,1");
+    $("#32").text("3,2");
+    $("#33").text("3,3");
+
     var factionX = $("input#new-faction-X-name").val(); 
     var factionY = $("input#new-faction-Y-name").val(); 
     currentGame = Game.create(factionX,factionY);
@@ -145,44 +155,45 @@ $(document).ready(function () {
     $("#faction-entry").hide();
     $("#whose-turn").text(currentGame.whoseTurn);
 
-    $(".square").click(function(){
-      var squareID = this.id;
-      var moveX = parseInt(squareID.charAt(0));
-      var moveY = parseInt(squareID.charAt(1));
+    $("form#make-your-move").submit(function(event) {
+      event.preventDefault();
+      var moveX = parseInt($("select#new-x-move").val());
+      var moveY = parseInt($("select#new-y-move").val());
 
       if(currentGame.makeMove(currentGame.whoseTurn, moveX, moveY)) {
         $("#" + moveX + moveY).text("");
         $("#" + moveX + moveY).append(currentGame.whoseTurn);
         currentGame.switchTurn();
-        $("#whose-turn").text(currentGame.whoseTurn);
-        console.log(currentGame.gameOver());
-        if (currentGame.gameOver() === "NOBODY WINS") {
-          alert('The conflict has ground to a standstill. No faction wins. Please reset and try again. Do try harder next time.');
-          $("#game-play").hide();
-          $("#game-reset").show();
-        } else if (currentGame.gameOver() !== false) {
-          alert(currentGame.gameOver() + " has conquered this lovely territory. Hooray and congratulations.");
-          $("#game-play").hide();
-          $("#game-reset").show();
-          var loser;
-          if(currentGame.gameOver() === currentGame.playerX.faction) {
-            loser = currentGame.playerY.faction;
-          } else {
-            loser = currentGame.playerX.faction;
-          }
-          $("#game-reset-header").text("Congratulations " + currentGame.gameOver() + "! Condolences " + loser);
-        }
-        
+        $("#whose-turn").text(currentGame.whoseTurn);        
       } else {
         alert('Please select an open square for your move, dum-dum!');
       }
-      this.reset();
+      if (currentGame.gameOver() === "NOBODY WINS") {
+        alert('The conflict has ground to a standstill. No faction wins. Please reset and try again. Do try harder next time.');
+        $("#game-play").hide();
+        $("#game-reset").show();
+      } else if (currentGame.gameOver() !== false) {
+        console.log(currentGame.gameOver());
+        console.log(currentGame.whoIsWinner());
+        alert(currentGame.gameOver() + " has conquered this lovely territory. Hooray and congratulations.");
+        $("#game-play").hide();
+        $("#game-reset").show();
+      }
     });
 
     $("form#reset-the-game").submit(function(event) {
       event.preventDefault();
       $("#game-reset").hide();
       $("#faction-entry").show();
+      $("#11").text("");
+      $("#12").text("");
+      $("#13").text("");
+      $("#21").text("");
+      $("#22").text("");
+      $("#23").text("");
+      $("#31").text("");
+      $("#32").text("");
+      $("#33").text("");
     });
   });  
 });

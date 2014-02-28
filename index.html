@@ -31,30 +31,9 @@
           <div id="game-play">
             <br/>
             <h3>It is <span id="whose-turn"></span>'s turn!</h3>
-            <form id="make-your-move">
-              <div id="team-names"></div>
-              <div id="faction-move-header"></div>
-              <div class="form-group">
-                <label for="move-x-coordinate">Enter X-Coordinate:</label>
-                <select class="form-control" id="new-x-move">
-                  <option>1</option>
-                  <option>2</option>
-                  <option>3</option>
-                </select>
-              </div>
-              <div class="form-group">
-                <label for="move-y-coordinate">Enter Y-Coordinate:</label>
-                <select class="form-control" id="new-y-move">
-                  <option>1</option>
-                  <option>2</option>
-                  <option>3</option>
-                </select>
-              </div>
-              <button type="submit" class="btn btn-info">Make Move</button>
-            </form>
           </div>
           <div id="game-reset">
-            <h3>Congratulations/Condolences!</h3>
+            <h3 id="game-reset-header">Everybody Loses.</h3>
             <form id="reset-the-game">
               <div class="form-group">
                 <button type="submit" class="btn btn-info">Reset the Game</button>
@@ -65,27 +44,24 @@
         <div class="col-md-8">
           <br/>
           <div class="bordered">
-            <div class="highlight">
-              <span class="square" id="11"></span>
+            <div class="highlight square" id="11">
             </div>
-            <div class="highlight2">
-              <span class="square" id="21"></span>
+            <div class="highlight2 square" id="21">
             </div>
-            <div class="highlight">
-              <span class="square" id="31"></span>
+            <div class="highlight square" id="31">
             </div>
           </div>
 
           <div class="bordered">
-            <div class="highlight2" id="12"></div>
-            <div class="highlight" id="22"></div>
-            <div class="highlight2" id="32"></div>
+            <div class="highlight2 square" id="12"></div>
+            <div class="highlight square" id="22"></div>
+            <div class="highlight2 square" id="32"></div>
           </div>
 
           <div class="bordered">
-            <div class="highlight" id="13"></div>
-            <div class="highlight2" id="23"></div>
-            <div class="highlight" id="33"></div>
+            <div class="highlight square" id="13"></div>
+            <div class="highlight2 square" id="23"></div>
+            <div class="highlight square" id="33"></div>
           </div>
         </div>
       </div>

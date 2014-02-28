@@ -34,12 +34,6 @@
   background: #CCC;
 }
 
-.square {
-  display: inline-block;
-  vertical-align: middle;
-  line-height: normal;
-}
-
 h3 {
   color: darkorchid;
   font-style: italic;
