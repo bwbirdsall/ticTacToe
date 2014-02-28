@@ -89,7 +89,9 @@ var Game = {
     var newGame = Object.create(Game);
     newGame.board = Board.create();
     newGame.playerX = Player.create(factionX);
+    newGame.playerX.url = "http://31.media.tumblr.com/9424248363e2818263e303fb29461aa7/tumblr_mfwx4efRos1rnqiwzo1_500.gif";
     newGame.playerY = Player.create(factionY);
+    newGame.playerY.url = "http://24.media.tumblr.com/tumblr_m1dczjetvT1rnqiwzo1_500.gif";
     newGame.whoseTurn = newGame.whoStarts();
     return newGame;
   },
@@ -152,7 +154,13 @@ $(document).ready(function () {
 
       if(currentGame.makeMove(currentGame.whoseTurn, moveX, moveY)) {
         $("#" + moveX + moveY).text("");
-        $("#" + moveX + moveY).append(currentGame.whoseTurn);
+        var url;
+        if(currentGame.playerX.faction === currentGame.whoseTurn) {
+          url = currentGame.playerX.url;
+        } else {
+          url = currentGame.playerY.url;
+        }
+        $("#" + moveX + moveY).append('<img src="' + url + '">');
         currentGame.switchTurn();
         $("#whose-turn").text(currentGame.whoseTurn);
         console.log(currentGame.gameOver());

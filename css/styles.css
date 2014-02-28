@@ -34,6 +34,10 @@
   background: #CCC;
 }
 
+img {
+  width: 170px; 
+}
+
 h3 {
   color: darkorchid;
   font-style: italic;
