@@ -178,7 +178,7 @@ $(document).ready(function () {
           } else {
             loser = currentGame.playerX.faction;
           }
-          $("#game-reset-header").text("Congratulations " + currentGame.gameOver() + "! Condolences " + loser);
+          $("#game-reset-header").text("Congratulations " + currentGame.gameOver() + "! Condolences " + loser + "!");
         }
         
       } else {
@@ -191,6 +191,15 @@ $(document).ready(function () {
       event.preventDefault();
       $("#game-reset").hide();
       $("#faction-entry").show();
+      $("#11").text("");
+      $("#12").text("");
+      $("#13").text("");
+      $("#21").text("");
+      $("#22").text("");
+      $("#23").text("");
+      $("#31").text("");
+      $("#32").text("");
+      $("#33").text("");
     });
   });  
 });
